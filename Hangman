@@ -1,0 +1,125 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+    char correct[7];
+    char word[] = { 'f', 'r', 'i', 'e', 'n', 'd','s' };
+    char fill[] = { '_','_','_','_','_','_','_' };
+    char check[7];
+    for (int i = 0; i < 7; i++)
+     {
+        check[i] = word[i];
+     }
+    
+    cout << "Here is the number of letters in the word you have to guess: " << endl;
+    cout << "''_ _ _ _ _ _ _''" << endl;
+    cout << "You are supposed to guess in 9  attempts." << endl;
+    cout << "Type a letter in the word or $ to skip the rest of the guess attempts and type the complete word you want to guess." << endl;
+
+    for (int ii = 1, z = 1; ii <= 9; ii++)
+    {
+
+        cout << "Enter your guess #" << z << endl;
+        char letter;
+        cin >> letter;
+        if (letter == '$')
+        {
+            cout << "enter the correct word :";
+            for (int i = 0; i < 7; i++)
+            {
+                cin >> correct[i];
+            }
+            int t1 = 0;
+            for (int i = 0; i < 7; i++)
+            {
+                if (correct[i] == check[i])
+                {
+                    t1++;
+                    if (t1 == 7)
+                    {
+                        cout << endl << endl << endl << endl << endl << endl;
+                        cout << "well done";
+                        cout << endl << endl << endl << endl << endl << endl;
+                    }
+                }
+                else
+                {
+                    cout << endl << endl << endl << endl << endl;
+                    cout << " you lost the game";
+                    cout << endl << endl << endl << endl << endl;
+                    break;
+                  
+                }
+            }
+           
+            ii = 10;
+        }
+        else
+        {
+            for (int j = 0; j < 7; j++)
+            {
+                if (letter == word[j])
+                {
+                    word[j] = word[j] + fill[j];
+                    fill[j] = word[j] - fill[j];
+                    word[j] = word[j] - fill[j];
+                    for (int x = 0; x < 7; x++)
+                    {
+                        cout << fill[x]<<" ";
+                    }
+                    cout << endl;
+                }
+            }
+        }
+        z++;
+        int t = 0;
+        for (int i = 0; i < 7; i++)
+        {
+            
+            if (fill[i] == check[i])
+            {
+                t++;
+            }
+            if (t == 7)
+            {
+                cout << "Well done!" << endl;
+                ii = 10;
+               
+            }
+            else if (ii == 9)
+            {
+                cout << "sorry you are out of guess now type the correct word" << endl;
+                cout << "enter the correct word :";
+                for (int i = 0; i < 7; i++)
+                {
+                    cin >> correct[i];
+                }
+                int t2 = 0;
+                for (int i = 0; i < 7; i++)
+                {
+                    if (correct[i] == check[i])
+                    {
+                        t2++;
+                        if (t2 == 7)
+                        {
+                            cout << endl << endl << endl << endl << endl << endl;
+                            cout << "well done";
+                            cout << endl << endl << endl << endl << endl << endl;
+                        }
+                    }
+                    else
+                    {
+                        cout << endl << endl << endl << endl << endl;
+                        cout << " you lost the game";
+                        cout << endl << endl << endl << endl << endl;
+                        break;
+
+                    }
+                }
+                ii = 11;
+            }
+        }
+
+    }
+    return 0;
+}
